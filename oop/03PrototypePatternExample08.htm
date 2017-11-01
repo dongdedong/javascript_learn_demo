@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Pattern Example</title>
+    <script type="text/javascript">
+            
+        function Person(){
+        }
+        
+        Person.prototype = {
+            constructor : Person,
+            name : "Nicholas",
+            age : 29,
+            job: "Software Engineer",
+            sayName : function () {
+                alert(this.name);
+            }
+        };
+        //以上代码特意包含了一个constructor 属性，并将它的值设置为Person，从而确保了通过该属性能够访问到适当的值。
+        var friend = new Person();
+        console.log(friend);
+        
+        alert(friend instanceof Object);  //true
+        alert(friend instanceof Person);  //true
+        alert(friend.constructor == Person);  //true
+        alert(friend.constructor == Object);  //false
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

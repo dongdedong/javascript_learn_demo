@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Type bind() Method Example</title>
+    <script type="text/javascript">
+        /*ECMAScript 5 还定义了一个方法：bind()。这个方法会创建一个函数的实例，其this 值会被绑
+        定到传给bind()函数的值。*/
+
+        window.color = "red";
+        var o = { color: "blue" };
+                           
+        function sayColor(){
+            alert(this.color);
+        }
+        var objectSayColor = sayColor.bind(o);
+        objectSayColor();   //blue
+
+
+        /*在这里，sayColor()调用bind()并传入对象o，创建了objectSayColor()函数。object-
+        SayColor()函数的this 值等于o，因此即使是在全局作用域中调用这个函数，也会看到"blue"。这
+        种技巧的优点请参考第22 章。*/
+
+
+    </script>
+</head>
+<body>
+    <p>This example is known to work in Internet Explorer 9, Firefox 4, and Chrome 6.</p>
+</body>
+</html>

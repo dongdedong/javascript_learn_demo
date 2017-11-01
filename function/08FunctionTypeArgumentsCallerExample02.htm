@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Type Arguments Caller Example</title>
+    <script type="text/javascript">
+        
+        function outer(){
+            inner();
+        }
+        
+        function inner(){
+            alert(arguments.callee.caller);//为了实现更松散的耦合，也可以通过arguments.callee.caller来访问相同的信息。
+        }
+        
+        outer();
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

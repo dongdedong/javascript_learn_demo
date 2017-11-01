@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Pattern Example</title>
+    <script type="text/javascript">
+
+        /*尽管可以随时为原型添加属性和方法，并且修改能够立即在所有对象实例中反映出来，但如果是重
+        写整个原型对象，那么情况就不一样了。我们知道，调用构造函数时会为实例添加一个指向最初原型的
+        [[Prototype]]指针，而把原型修改为另外一个对象就等于切断了构造函数与最初原型之间的联系。
+        请记住：实例中的指针仅指向原型，而不指向构造函数。看下面的例子。*/
+        function Person(){
+        }
+        
+        var friend = new Person();
+                
+        Person.prototype = {
+            constructor: Person,
+            name : "Nicholas",
+            age : 29,
+            job : "Software Engineer",
+            sayName : function () {
+                alert(this.name);
+            }
+        };
+        
+        friend.sayName();   //error
+
+
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

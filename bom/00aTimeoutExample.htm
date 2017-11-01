@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timeout Example 3</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        /*可见，在使用超时调用时，没有必要跟踪超时调用ID，因为每次执行代码之后，如果不再设置另
+        一次超时调用，调用就会自行停止。一般认为，使用超时调用来模拟间歇调用的是一种最佳模式。在开
+        发环境下，很少使用真正的间歇调用，原因是后一个间歇调用可能会在前一个间歇调用结束之前启动。
+        而像前面示例中那样使用超时调用，则完全可以避免这一点。所以，最好不要使用间歇调用。*/
+
+        var num = 0;
+        var max = 100;
+        
+        function incrementNumber() {
+            num++;
+        
+            //if the max has not been reached, set another timeout
+            if (num < max) {
+                setTimeout(incrementNumber, 500);
+            } else {
+                alert("Done");
+            }
+        }
+        
+        setTimeout(incrementNumber, 500);
+
+
+
+    </script>
+</body>
+</html>

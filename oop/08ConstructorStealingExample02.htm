@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Constructor Stealing Example</title>
+    <script type="text/javascript">
+
+
+        /*相对于原型链而言，借用构造函数有一个很大的优势，即可以在子类型构造函数中向超类型构造函数传递参数*/
+
+        /* 借用构造函数的问题
+        如果仅仅是借用构造函数，那么也将无法避免构造函数模式存在的问题——方法都在构造函数中定
+        义，因此函数复用就无从谈起了。而且，在超类型的原型中定义的方法，对子类型而言也是不可见的，结
+        果所有类型都只能使用构造函数模式。考虑到这些问题，借用构造函数的技术也是很少单独使用的。*/
+
+        function SuperType(name){
+            this.name = name;
+        }
+
+        function SubType(){  
+            //inherit from SuperType passing in an argument
+            SuperType.call(this, "Nicholas");
+            
+            //instance property
+            this.age = 29;
+        }
+
+        var instance = new SubType();
+        alert(instance.name);    //"Nicholas";
+        alert(instance.age);     //29
+       
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

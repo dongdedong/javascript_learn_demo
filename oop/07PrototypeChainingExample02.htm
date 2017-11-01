@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Chaining Example 2</title>
+    <script type="text/javascript">
+
+
+        function SuperType(){
+            this.property = true;
+        }
+        
+        SuperType.prototype.getSuperValue = function(){
+            return this.property;
+        };
+        
+        function SubType(){
+            this.subproperty = false;
+        }
+        
+        //inherit from SuperType
+        SubType.prototype = new SuperType();
+        
+        //new method
+        SubType.prototype.getSubValue = function (){
+            return this.subproperty;
+        };
+        
+        //override existing method
+        SubType.prototype.getSuperValue = function (){
+            return false;
+        };
+        
+        var instance = new SubType();
+        alert(instance.getSuperValue());   //false
+
+        /*在以上代码中，加粗的部分是两个方法的定义。第一个方法getSubValue()被添加到了SubType
+    中。第二个方法getSuperValue()是原型链中已经存在的一个方法，但重写这个方法将会屏蔽原来的
+    那个方法。换句话说，当通过SubType 的实例调用getSuperValue()时，调用的就是这个重新定义
+    的方法；但通过SuperType 的实例调用getSuperValue()时，还会继续调用原来的那个方法。
+
+
+    这里要格外注意的是，必须在用SuperType 的实例替换原型之后，再定义这两个方法。*/
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hybrid Factory Pattern Example 2</title>
+    <script type="text/javascript">
+
+
+        /*关于寄生构造函数模式，有一点需要说明：首先，返回的对象与构造函数或者与构造函数的原型属
+        性之间没有关系；也就是说，构造函数返回的对象与在构造函数外部创建的对象没有什么不同。为此，
+        不能依赖instanceof 操作符来确定对象类型。由于存在上述问题，我们建议在可以使用其他模式的情
+        况下，不要使用这种模式。*/
+
+        function SpecialArray(){       
+ 
+            //create the array
+            var values = new Array();
+            
+            //add the values
+            values.push.apply(values, arguments);
+            
+            //assign the method
+            values.toPipedString = function(){
+                return this.join("|");
+            };
+            
+            //return it
+            return values;        
+        }
+        
+        var colors = new SpecialArray("red", "blue", "green");
+        alert(colors.toPipedString()); //"red|blue|green"
+
+        alert(colors instanceof SpecialArray);
+
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

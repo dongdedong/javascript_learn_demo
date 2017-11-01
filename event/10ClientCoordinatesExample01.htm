@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client coordinates Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <div id="myDiv" style="background-color:red;height:100px;width:100px">Click me</div>
+    <script type="text/javascript">
+
+        /*当用户单击这个元素时，就会看到事件的客户端坐标信息。
+        注意，这些值中不包括页面滚动的距离，因此这个位置并不表示鼠标在页面上的位置*/
+        var div = document.getElementById("myDiv");
+        EventUtil.addHandler(div, "click", function(event){
+            event = EventUtil.getEvent(event);
+            alert("Client coordinates: " + event.clientX + "," + event.clientY);        
+        });
+    </script>
+</body>
+</html>

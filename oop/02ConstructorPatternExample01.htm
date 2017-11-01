@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Constructor Pattern Example</title>
+    <script type="text/javascript">
+
+        /*
+        * 构造函数模式
+        *
+        * 按照惯例，构造函数始终都应该以一个大写字母开头，而非构造函数则应该以一个小写字母开头
+        *
+        *
+        *
+        * */
+        function Person(name, age, job){
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.sayName = function(){
+                alert(this.name);
+            };    
+        }
+        
+        var person1 = new Person("Nicholas", 29, "Software Engineer");
+        var person2 = new Person("Greg", 27, "Doctor");
+        
+        person1.sayName();   //"Nicholas"
+        person2.sayName();   //"Greg"
+
+
+        /*创建自定义的构造函数意味着将来可以将它的实例标识为一种特定的类型；而这正是构造函数模式胜过工厂模式的地方*/
+
+        alert(person1 instanceof Object);  //true
+        alert(person1 instanceof Person);  //true
+        alert(person2 instanceof Object);  //true
+        alert(person2 instanceof Person);  //true
+        
+        alert(person1.constructor == Person);  //true
+        alert(person2.constructor == Person);  //true
+        
+        alert(person1.sayName == person2.sayName);  //false        
+        
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

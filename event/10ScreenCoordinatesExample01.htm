@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screen Coordinates Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <div id="myDiv" style="background-color:red;height:100px;width:100px">Click me</div>
+    <script type="text/javascript">
+        /*鼠标事件发生时，不仅会有相对于浏览器窗口的位置，还有一个相对于整个电脑屏幕的位置。而通
+        过screenX 和screenY 属性就可以确定鼠标事件发生时鼠标指针相对于整个屏幕的坐标信息*/
+        var div = document.getElementById("myDiv");
+        EventUtil.addHandler(div, "click", function(event){
+            event = EventUtil.getEvent(event);
+            alert("Screen coordinates: " + event.screenX + "," + event.screenY);        
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Pattern Example 2</title>
+    <script type="text/javascript">
+
+        /*
+        * 虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型中的值。如果我们
+        在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该
+        属性将会屏蔽原型中的那个属性*/
+        function Person(){
+        }
+        
+        Person.prototype.name = "Nicholas";
+        Person.prototype.age = 29;
+        Person.prototype.job = "Software Engineer";
+        Person.prototype.sayName = function(){
+            alert(this.name);
+        };
+        
+        var person1 = new Person();
+        var person2 = new Person();
+        
+        person1.name = "Greg";
+        alert(person1.name);   //"Greg" � from instance
+        alert(person2.name);   //"Nicholas" � from prototype
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

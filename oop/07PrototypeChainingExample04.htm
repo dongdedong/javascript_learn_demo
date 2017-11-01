@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Chaining Example 4</title>
+    <script type="text/javascript">
+
+
+        /*原型链虽然很强大，可以用它来实现继承，但它也存在一些问题。其中，最主要的问题来自包含引
+        用类型值的原型。想必大家还记得，我们前面介绍过包含引用类型值的原型属性会被所有实例共享；而
+        这也正是为什么要在构造函数中，而不是在原型对象中定义属性的原因*/
+
+
+        /*原型链的第二个问题是：在创建子类型的实例时，不能向超类型的构造函数中传递参数。实际上，
+        应该说是没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数。有鉴于此，再加上
+        前面刚刚讨论过的由于原型中包含引用类型值所带来的问题，实践中很少会单独使用原型链。*/
+        function SuperType(){
+            this.colors = ["red", "blue", "green"];
+        }
+
+        function SubType(){            
+        }
+        
+        //inherit from SuperType
+        SubType.prototype = new SuperType();
+
+        var instance1 = new SubType();
+        instance1.colors.push("black");
+        alert(instance1.colors);    //"red,blue,green,black"
+        
+        var instance2 = new SubType();
+        alert(instance2.colors);    //"red,blue,green,black"
+        
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

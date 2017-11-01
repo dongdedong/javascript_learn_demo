@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client coordinates Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <div id="myDiv" style="background-color:red;height:10000px;width:100px">Click me</div>
+    <script>
+
+        /*通过客户区坐标能够知道鼠标是在视口中什么位置发生的，而页面坐标通过事件对象的pageX 和
+        pageY 属性，能告诉你事件是在页面中的什么位置发生的。换句话说，这两个属性表示鼠标光标在页面
+        中的位置，因此坐标是从页面本身而非视口的左边和顶边计算的*/
+        var div = document.getElementById("myDiv");
+        EventUtil.addHandler(div, "click", function(event){
+            event = EventUtil.getEvent(event);
+            var pageX = event.pageX,
+                pageY = event.pageY;
+        
+            if (pageX === undefined){
+                pageX = event.clientX + (document.body.scrollLeft || document.documentElement.scrollLeft);
+            }
+        
+            if (pageY === undefined){
+                pageY = event.clientY + (document.body.scrollTop || document.documentElement.scrollTop);
+            }
+        
+            alert("Page coordinates: " + event.pageX + "|" + pageX + "," + event.pageY + "|"+pageY);        
+        });
+
+    </script>
+</body>
+</html>

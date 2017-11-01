@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Pattern Example</title>
+    <script type="text/javascript">
+         /*
+         * 原型对象的问题
+         *
+         * 而这个问题正是我们很少看到有人单独使用原型模式的原因所在。
+         *
+        原型模式也不是没有缺点。首先，它省略了为构造函数传递初始化参数这一环节，结果所有实例在
+        默认情况下都将取得相同的属性值。虽然这会在某种程度上带来一些不方便，但还不是原型的最大问题。
+        原型模式的最大问题是由其共享的本性所导致的。
+        原型中所有属性是被很多实例共享的，这种共享对于函数非常合适。对于那些包含基本值的属性倒
+        也说得过去，毕竟（如前面的例子所示），通过在实例上添加一个同名属性，可以隐藏原型中的对应属
+        性。然而，对于包含引用类型值的属性来说，问题就比较突出
+
+        */
+        function Person(){
+        }
+        
+        Person.prototype = {
+            constructor: Person,
+            name : "Nicholas",
+            age : 29,
+            job : "Software Engineer",
+            friends : ["Shelby", "Court"],
+            sayName : function () {
+                alert(this.name);
+            }
+        };
+        
+        var person1 = new Person();
+        var person2 = new Person();
+        
+        person1.friends.push("Van");
+        
+        alert(person1.friends);    //"Shelby,Court,Van"
+        alert(person2.friends);    //"Shelby,Court,Van"
+        alert(person1.friends === person2.friends);  //true
+
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

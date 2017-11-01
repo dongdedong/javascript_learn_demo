@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Pattern Example</title>
+    <script type="text/javascript">
+
+
+            
+        function Person(){
+        }
+        
+        Person.prototype = {
+            name : "Nicholas",
+            age : 29,
+            job: "Software Engineer",
+            sayName : function () {
+                alert(this.name);
+            }
+        };
+
+        var friend = new Person();
+        console.log(friend);
+        
+        alert(friend instanceof Object);  //true
+        alert(friend instanceof Person);  //true
+        alert(friend.constructor == Person);  //false
+        alert(friend.constructor == Object);  //true
+
+
+        /*在上面的代码中，我们将Person.prototype 设置为等于一个以对象字面量形式创建的新对象。
+        最终结果相同，但有一个例外：constructor 属性不再指向Person 了。前面曾经介绍过，每创建一
+        个函数，就会同时创建它的prototype 对象，这个对象也会自动获得constructor 属性。而我们在
+        这里使用的语法，本质上完全重写了默认的prototype 对象，因此constructor 属性也就变成了新
+        对象的constructor 属性（指向Object 构造函数），不再指向Person 函数。此时，尽管instanceof
+        操作符还能返回正确的结果，但通过constructor 已经无法确定对象的类型了*/
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

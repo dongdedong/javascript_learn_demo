@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Creating Objects Example</title>
+    <script type="text/javascript">
+    
+        var person = new Object();
+        person.name = "Nicholas";
+        person.age = 29;
+        person.job = "Software Engineer";
+        person.sayName = function(){
+            alert(this.name);
+        };
+        
+        person.sayName();
+
+
+
+        /*
+        对象字面量的创建方式
+        var person = {
+            name: "Nicholas",
+            age: 29,
+            job: "Software Engineer",
+            sayName: function(){
+                alert(this.name);
+            }
+        };*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Event Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        EventUtil.addHandler(window, "load", function(){
+
+            /*还有一些元素也以非标准的方式支持load 事件。在IE9+、Firefox、Opera、Chrome 和Safari 3+及
+            更高版本中，<script>元素也会触发load 事件，以便开发人员确定动态加载的JavaScript 文件是否加
+            载完毕。与图像不同，只有在设置了<script>元素的src 属性并将该元素添加到文档后，才会开始下
+            载JavaScript 文件。换句话说，对于<script>元素而言，指定src 属性和指定事件处理程序的先后顺
+            序就不重要了。以下代码展示了怎样为<script>元素指定事件处理程序。*/
+
+            var script = document.createElement("script");
+            EventUtil.addHandler(script, "load", function(event){
+                alert("Loaded");
+            });
+            script.src = "example.js";
+            document.body.appendChild(script);
+            
+            var link = document.createElement("link");
+            link.type = "text/css";
+            link.rel= "stylesheet";
+            
+            //opera only
+            EventUtil.addHandler(link, "load", function(event){
+                alert("css loaded");
+            });
+            link.href = "example.css";
+            document.getElementsByTagName("head")[0].appendChild(link);
+        });
+    </script>
+</body>
+</html>

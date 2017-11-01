@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Type call() Method Example</title>
+    <script type="text/javascript">
+        /*call()方法与apply()方法的作用相同，它们的区别仅在于接收参数的方式不同。对于call()
+        方法而言，第一个参数是this 值没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用
+        call()方法时，传递给函数的参数必须逐个列举出来*/
+
+        function sum(num1, num2){
+            return num1 + num2;
+        }
+        
+        function callSum(num1, num2){
+            return sum.call(this, num1, num2);
+        }
+        
+        alert(callSum(10,10));   //20
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

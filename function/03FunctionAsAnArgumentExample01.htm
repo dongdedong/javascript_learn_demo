@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function as an Argument Example</title>
+    <script type="text/javascript">
+
+        /*因为ECMAScript 中的函数名本身就是变量，所以函数也可以作为值来使用。也就是说，不仅可以
+        像传递参数一样把一个函数传递给另一个函数，而且可以将一个函数作为另一个函数的结果返回*/
+
+        function callSomeFunction(someFunction, someArgument){
+            return someFunction(someArgument);
+        }
+
+        function add10(num){
+            return num + 10;
+        }
+        
+        var result1 = callSomeFunction(add10, 10);
+        alert(result1);   //20
+        
+        function getGreeting(name){
+            return "Hello, " + name;
+        }
+        
+        var result2 = callSomeFunction(getGreeting, "Nicholas");
+        alert(result2);   //Hello, Nicholas
+
+        /*还记得吧，要访问函数的指针而不执行函数的话，必须去掉函数名后
+        面的那对圆括号。因此上面例子中传递给callSomeFunction()的是add10 和getGreeting，而不
+        是执行它们之后的结果*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

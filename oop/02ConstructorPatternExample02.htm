@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Constructor Pattern Example 2</title>
+    <script type="text/javascript">
+
+        /*构造函数与其他函数的唯一区别，就在于调用它们的方式不同。不过，构造函数毕竟也是函数，不
+        存在定义构造函数的特殊语法。任何函数，只要通过new 操作符来调用，那它就可以作为构造函数；而
+        任何函数，如果不通过new 操作符来调用，那它跟普通函数也不会有什么两样。例如，前面例子中定义
+        的Person()函数可以通过下列任何一种方式来调用。*/
+
+
+        function Person(name, age, job){
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.sayName = function(){
+                alert(this.name);
+            };
+        }
+
+
+        // 当作构造函数使用
+        var person = new Person("Nicholas", 29, "Software Engineer");
+        person.sayName();   //"Nicholas"
+
+        // 作为普通函数调用
+        Person("Greg", 27, "Doctor");  //adds to window
+        window.sayName();   //"Greg"
+
+
+        // 在另一个对象的作用域中调用
+        var o = new Object();
+        Person.call(o, "Kristen", 25, "Nurse");
+        o.sayName();    //"Kristen"
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hybrid Factory Pattern Example</title>
+    <script type="text/javascript">
+
+        /*寄生构造函数模式*/
+
+        /*在这个例子中，Person 函数创建了一个新对象，并以相应的属性和方法初始化该对象，然后又返
+        回了这个对象。除了使用new 操作符并把使用的包装函数叫做构造函数之外，这个模式跟工厂模式其实
+        是一模一样的。构造函数在不返回值的情况下，默认会返回新对象实例。而通过在构造函数的末尾添加
+        一个return 语句，可以重写调用构造函数时返回的值。*/
+
+
+        function Person(name, age, job){
+            var o = new Object();
+            o.name = name;
+            o.age = age;
+            o.job = job;
+            o.sayName = function(){
+                alert(this.name);
+            };    
+            return o;
+        }
+        
+        var friend = new Person("Nicholas", 29, "Software Engineer");
+        friend.sayName();  //"Nicholas"
+
+
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>
