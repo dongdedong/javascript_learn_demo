@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Fill Rect Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d"),
+                    gradient = context.createLinearGradient(30, 30, 70, 70);
+            
+            
+                gradient.addColorStop(0, "white");
+                gradient.addColorStop(1, "black");
+            
+                //draw a red rectangle
+                context.fillStyle = "#ff0000";
+                context.fillRect(10, 10, 50, 50);
+            
+                //draw a gradient rectangle
+                context.fillStyle = gradient;
+                context.fillRect(50, 50, 50, 50);
+
+                /*这两行代码执行后得到的矩形只有左上角稍微有一点白色。这主要是因为矩形的起点位于渐变的中
+                间位置，而此时渐变差不多已经结束了。由于渐变不重复，所以矩形的大部分区域都是黑色。确保渐变
+                与形状对齐非常重要，有时候可以考虑使用函数来确保坐标合适*/
+            }
+        };
+
+    </script>
+    <p>This example based on <a href="http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage">Mozilla's documentation</a></p>
+    </body>
+</html>

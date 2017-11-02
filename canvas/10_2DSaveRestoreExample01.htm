@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Save-Restore Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            /*首先，将fillStyle 设置为红色，并调用save()保存上下文状态。接下来，把fillStyle 修改
+            为绿色，把坐标原点变换到(100,100)，再调用save()保存上下文状态。然后，把fillStyle 修改为蓝
+            色并绘制蓝色的矩形。因为此时的坐标原点已经变了，所以矩形的左上角坐标实际上是(100,100)。然后
+            调用restore()，之后fillStyle 变回了绿色，因而第二个矩形就是绿色。之所以第二个矩形的起点
+            坐标是(110,110)，是因为坐标位置的变换仍然起作用。再调用一次restore()，变换就被取消了，而
+            fillStyle 也返回了红色。所以最后一个矩形是红色的，而且绘制的起点是(0,0)。
+            需要注意的是，save()方法保存的只是对绘图上下文的设置和变换，不会保存绘图上下文的
+            内容。*/
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d");
+                                
+                context.fillStyle = "#ff0000";
+                context.save();
+                
+                context.fillStyle = "#00ff00";
+                context.translate(100, 100);
+                context.save();
+                
+                context.fillStyle = "#0000ff";
+                context.fillRect(0, 0, 100, 200);   //draws blue rectangle at (100, 100)
+                
+                context.restore();
+                context.fillRect(10, 10, 100, 200);   //draws green rectangle at (110, 110)
+                
+                context.restore();
+                context.fillRect(0, 0, 100, 200);    //draws red rectangle at (0,0)
+
+
+            }                
+        };
+
+    </script>
+    </body>
+</html>

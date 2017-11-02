@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Path Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d");
+
+
+                /*这个例子使用arc()方法绘制了两个圆形：一个外圆和一个内圆，构成了表盘的边框。外圆的半径
+                是99 像素，圆心位于点(100,100)，也是画布的中心点。为了绘制一个完整的圆形，我们从0 弧度开始，
+                绘制2π 弧度（通过Math.PI 来计算）。在绘制内圆之前，必须把路径移动到内圆上的某一点，以避免
+                绘制出多余的线条。第二次调用arc()使用了小一点的半径，以便创造边框的效果。然后，组合使用
+                moveTo()和lineTo()方法来绘制时针和分针。最后一步是调用stroke()方法，这样才能把图形绘制
+                到画布上*/
+
+                //start the path
+                context.beginPath();
+                
+                //draw outer circle
+                context.arc(100, 100, 99, 0, 2 * Math.PI, false);
+                
+                //draw inner circle
+                context.moveTo(194, 100);
+                context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+                
+                //draw minute hand
+                context.moveTo(100,100);
+                context.lineTo(100, 15);
+                
+                //draw hour hand
+                context.moveTo(100, 100);
+                context.lineTo(35, 100);
+                
+                context.stroke();
+            }                
+        };
+
+    </script>
+    </body>
+</html>

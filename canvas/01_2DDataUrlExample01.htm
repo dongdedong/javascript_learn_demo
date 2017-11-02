@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Fill Rect Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <input type="button" value="Export" id="export-btn" >
+    <script type="text/javascript">
+
+        /*与其他元素一样，<canvas>元素对应的DOM 元素对象也有width 和height 属性，可以随意修
+        改。而且，也能通过CSS 为该元素添加样式，如果不添加任何样式或者不绘制任何图形，在页面中是看
+        不到该元素的。
+        要在这块画布（canvas）上绘图，需要取得绘图上下文。而取得绘图上下文对象的引用，需要调用
+        getContext()方法并传入上下文的名字。传入"2d"，就可以取得2D 上下文对象。*/
+        window.onload = function(){
+            var drawing = document.getElementById("drawing"),
+                btn     = document.getElementById("export-btn");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d");
+            
+                //draw a red rectangle
+                context.fillStyle = "#ff0000";
+                context.fillRect(10, 10, 50, 50);
+            
+                //draw a blue rectangle that's semi-transparent
+                context.fillStyle = "rgba(0,0,255,0.5)";
+                context.fillRect(30, 30, 50, 50);
+            }                
+            
+            btn.onclick = function(){
+
+                /*使用toDataURL()方法，可以导出在<canvas>元素上绘制的图像。这个方法接受一个参数，即图
+                像的MIME 类型格式，而且适合用于创建图像的任何上下文。比如，要取得画布中的一幅PNG 格式的
+                图像，可以使用以下代码。*/
+
+                //get data URI of the image
+                var imgURI = drawing.toDataURL();
+                
+                //display the image
+                var image = document.createElement("img");
+                image.src = imgURI;
+                document.body.appendChild(image);    
+
+            };
+        };
+
+    </script>
+    <p>This example based on <a href="http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage">Mozilla's documentation</a></p>
+    <p>Click <strong>Export</strong> to export the image to an <code>img</code> element. Then, you can right-click and save the image locally.</p>
+    </body>
+</html>

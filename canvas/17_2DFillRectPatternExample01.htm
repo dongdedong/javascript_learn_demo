@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Fill Rect Pattern Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <img id="smiley" src="smile.gif" border="1" title="Image tag" />
+    <script>
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+
+                /*模式其实就是重复的图像， 可以用来填充或描边图形。要创建一个新模式， 可以调用
+                createPattern()方法并传入两个参数：一个HTML <img>元素和一个表示如何重复图像的字符串。
+                其中，第二个参数的值与CSS 的background-repeat 属性值相同，包括"repeat"、"repeat-x"、
+                "repeat-y"和"no-repeat"。*/
+                var context = drawing.getContext("2d"),
+                    image = document.images[0],
+                    pattern = context.createPattern(image, "repeat");
+
+                //draw a rectangle
+
+                /*需要注意的是，模式与渐变一样，都是从画布的原点(0,0)开始的。将填充样式（fillStyle）设置
+                为模式对象，只表示在某个特定的区域内显示重复的图像，而不是要从某个位置开始绘制重复的图像*/
+                context.fillStyle = pattern;
+                context.fillRect(10, 10, 150, 150);
+
+            }                
+        };
+
+    </script>
+    </body>
+</html>

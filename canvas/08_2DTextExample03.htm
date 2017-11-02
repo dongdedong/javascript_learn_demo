@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Text Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d"),
+                    fontSize = 50,
+                    i, len;
+                
+                //draw a red rectangle
+                context.strokeWidth = 1;
+                context.strokeStyle="#000000";
+                context.strokeRect(10, 10, 150, 30);     
+
+                //default font setting
+                context.font = fontSize + "px Arial";
+                context.textBaseline = "top";
+
+
+                /*由于绘制文本比较复杂，特别是需要把文本控制在某一区域中的时候，2D 上下文提供了辅助确定
+                文本大小的方法measureText()。这个方法接收一个参数，即要绘制的文本；返回一个TextMetrics
+                对象。返回的对象目前只有一个width 属性，但将来还会增加更多度量属性。
+                measureText()方法利用font、textAlign 和textBaseline 的当前值计算指定文本的大小。
+                比如，假设你想在一个140 像素宽的矩形区域中绘制文本Hello world!，下面的代码从100 像素的字体
+                大小开始递减，最终会找到合适的字体大小*/
+
+
+                if (context.measureText){
+                    while(context.measureText("Hello world!").width > 140){
+                        fontSize--;
+                        context.font = fontSize + "px Arial";
+                    }
+                    
+                    context.fillText("Hello world!", 10, 10);
+                    context.fillText("Font size is " + fontSize + "px", 10, 50);
+                } else {
+                    alert("Your browser doesn't support the canvas text API.");
+                }   
+
+            }                
+        };
+
+    </script>
+    </body>
+</html>
